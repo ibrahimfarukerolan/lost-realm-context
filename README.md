@@ -1,56 +1,124 @@
-# Welcome to your Expo app 👋
+# The Lost Realm — Context API Edition
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Laboratory 5 — Usage of Context API
 
-## Get started
+**Course:** Development of Hybrid Mobile Applications
 
-1. Install dependencies
+### Project Description
 
-   ```bash
-   npm install
-   ```
+The Lost Realm is a fantasy paragraph adventure game developed using React Native, Expo, and TypeScript.
 
-2. Start the app
+The project demonstrates the use of React Context API to manage language preferences, application themes, and character information across multiple screens.
 
-   ```bash
-   npx expo start
-   ```
+### Features
 
-In the output, you'll find options to open the app in a
+- Welcome screen with character name input
+- English and Turkish language support
+- Light and dark themes
+- Independent language and theme selection
+- Three React Context API providers
+- Dynamic translations using react-i18next
+- JSON-based translation files
+- Dynamic player name and HP interpolation
+- Character health and inventory management
+- Three-chapter fantasy adventure
+- Persistent language and theme preferences using AsyncStorage
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+### Context API Implementation
 
-You can start developing by editing the files inside the **src/app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+**1. LanguageContext**
 
-## Get a fresh project
+Manages the selected language (English or Turkish) and integrates with react-i18next to update translations dynamically.
 
-When you're ready, run:
+**2. ThemeContext**
 
-```bash
-npm run reset-project
+Manages light and dark themes independently from the language settings. Provides shared color values to application screens.
+
+**3. CharacterContext**
+
+Manages the character's state, including:
+
+- Character name
+- Character class
+- Current hit points (HP)
+- Inventory
+
+The context provides functions for taking damage, healing, collecting items, and resetting the character.
+
+### Dynamic Translation
+
+The application uses JSON translation files with react-i18next interpolation.
+
+Example:
+
+```json
+{
+  "playerGreeting": "Hello, {{playerName}}! You have {{hp}} hit points."
+}
 ```
 
-This command will move the starter code to the **example** directory and create a blank **src/app** directory where you can start developing.
+The placeholders are replaced dynamically with values stored in CharacterContext.
 
-### Other setup steps
+### Game Chapters
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+1. **The Mysterious Forest:** Explore the forest or rest.
+2. **The Ancient Castle:** Fight the guardian or search a chest.
+3. **The Final Chamber:** Collect the magical crystal and complete the adventure.
 
-## Learn more
+Character choices update HP and inventory using React Context API.
 
-To learn more about developing your project with Expo, look at the following resources:
+### Technologies
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+- React Native
+- Expo SDK 58
+- TypeScript
+- React Context API
+- react-i18next
+- i18next
+- AsyncStorage
+- Expo Router
 
-## Join the community
+### Installation
 
-Join our community of developers creating universal apps.
+Clone the repository and install dependencies:
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```bash
+npm install
+```
+
+Start the application:
+
+```bash
+npx expo start
+```
+
+Open the application using Expo Go on a compatible mobile device.
+
+### Project Structure
+
+```text
+src/
+├── app/
+│   ├── _layout.tsx
+│   ├── index.tsx
+│   └── game.tsx
+├── contexts/
+│   ├── LanguageContext.tsx
+│   ├── ThemeContext.tsx
+│   └── CharacterContext.tsx
+├── translations/
+│   ├── en.json
+│   └── tr.json
+└── utils/
+    └── i18n.ts
+```
+
+### Laboratory Requirements
+
+The application implements the required language and theme selection using React Context API. Both settings operate independently.
+
+CharacterContext stores the character's state, while react-i18next loads translations from JSON files and replaces dynamic placeholders with current character values.
+
+### Testing
+
+The application was manually tested for navigation, language switching, theme switching, character HP updates, inventory management, and adventure completion.
